@@ -1,12 +1,12 @@
 'use client';
 import "./globals.css";
-import Banner from "./pages/Banner";
-import Header from "./components/Header";
+import Banner from "../pages/Banner";
+import Header from "../components/Header";
 import { Open_Sans } from 'next/font/google';
 
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from "framer-motion";
-import Preloader from "./components/Preloader/Preloader";
+import Preloader from "../components/Preloader/Preloader";
 
 //👇 Configure our font object
 const openSans = Open_Sans({
@@ -17,7 +17,7 @@ const openSans = Open_Sans({
 
 
 
-export default function RootLayout() {
+export default function RootLayout({children, }:Readonly<{children: React.ReactNode}>) {
 
   const [isLoading, setIsLoading] = useState(true);
 
