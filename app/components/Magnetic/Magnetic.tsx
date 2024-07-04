@@ -15,6 +15,8 @@ const Magnetic: React.FC<MagneticProps> = ({ children }) => {
         const yTo = gsap.quickTo(magnetic.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
 
         const handleMouseMove = (e: MouseEvent) => {
+            if (!magnetic.current) return;
+
             const { clientX, clientY } = e;
             const { height, width, left, top } = magnetic.current.getBoundingClientRect();
             const x = clientX - (left + width / 2);
@@ -24,6 +26,8 @@ const Magnetic: React.FC<MagneticProps> = ({ children }) => {
         };
 
         const handleMouseLeave = () => {
+            if (!magnetic.current) return;
+
             xTo(0);
             yTo(0);
         };
