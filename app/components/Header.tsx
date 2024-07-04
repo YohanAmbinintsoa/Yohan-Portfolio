@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Magnetic from "./Magnetic/Magnetic";
 
 export default function Header() {
     const socialIcons = [
@@ -21,9 +22,9 @@ export default function Header() {
                 opacity: 1,
                 scale: 1,
                 transition: {
-                    delay: i * 0.1, 
-                    duration: 0.5, 
-                    ease: [0.5,1.6,0.4,0.7]
+                    delay: i * 0.1,
+                    duration: 0.5,
+                    ease: [0.5, 1.6, 0.4, 0.7]
                 },
             },
         }
@@ -33,23 +34,34 @@ export default function Header() {
         <nav className={`${styles.nav_container} absolute z-10 top-8 h-10 w-[90%]`}>
             <a href=""><h1 className="logo flex content-center text-xl gap-2 items-center"><span className={`${styles.logo_firstName}`}>Yohan</span><span className={`${styles.logo_lastName}`}>Ambinintsoa.</span></h1></a>
             <div className={`${styles.nav_links}`}>
-                <a className={`${styles.active_link}`} href="">Accueil</a>
-                <a href="">A propos</a>
-                <a href="">Educations</a>
-                <a href="">Experiences</a>
+                <Magnetic>
+                    <a className={`${styles.active_link}`} href="">Accueil</a>
+                </Magnetic>
+                <Magnetic>
+                    <a href="">A propos</a>
+                </Magnetic>
+                <Magnetic>
+                    <a href="">Educations</a>
+                </Magnetic>
+                <Magnetic>
+                    <a href="">Experiences</a>
+                </Magnetic>
             </div>
             <div className={`${styles.icons}`}>
                 {socialIcons.map((icon, i) => (
-                    <motion.a
-                        key={i}
-                        href={icon.link}
-                        variants={getVariant(i)}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: false }}
-                    >
-                    <icon.icon/>
-                    </motion.a>
+                    <Magnetic>
+                        <motion.a
+                            key={i}
+                            href={icon.link}
+                            variants={getVariant(i)}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false }}
+                        >
+                            <icon.icon />
+                        </motion.a>
+                    </Magnetic>
+
                 ))}
             </div>
         </nav>
