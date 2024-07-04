@@ -49,7 +49,7 @@ export default function Header() {
             </div>
             <div className={`${styles.icons}`}>
                 {socialIcons.map((icon, i) => (
-                    <Magnetic>
+                    <Magnetic key={i}>
                         <motion.a
                             key={i}
                             href={icon.link}
