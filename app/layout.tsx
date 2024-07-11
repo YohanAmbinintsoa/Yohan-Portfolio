@@ -7,6 +7,7 @@ import { Open_Sans } from 'next/font/google';
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from "framer-motion";
 import Preloader from "../components/Preloader/Preloader";
+import About from "@/pages/About";
 
 //👇 Configure our font object
 const openSans = Open_Sans({
@@ -14,12 +15,9 @@ const openSans = Open_Sans({
   display: 'swap',
 })
 
-
-
-
 export default function RootLayout({children, }:Readonly<{children: React.ReactNode}>) {
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     (
@@ -27,24 +25,19 @@ export default function RootLayout({children, }:Readonly<{children: React.ReactN
         const LocomotiveScroll = (await import('locomotive-scroll')).default
         const locomotiveScroll = new LocomotiveScroll();
 
-        setTimeout(() => {
-          setIsLoading(false);
-          document.body.style.cursor = 'default'
-          window.scrollTo(0, 0);
-        }, 2000)
       }
     )()
   }, [])
 
   return (
     <html lang="en">
-      {/* Apply the Roboto font class */}
       <body className={`${openSans.className} relative`}>
-        <AnimatePresence mode='wait'>
-          {isLoading && <Preloader />}
-        </AnimatePresence>
-        <Header />
-        <Banner />
+        {/* <AnimatePresence mode='wait'>
+          {isLoading && <Preloader setLoading={setIsLoading} />}
+        </AnimatePresence> */}
+        <Header loading={isLoading} />
+        <Banner loading={isLoading} />
+        <About />
       </body>
     </html>
   );

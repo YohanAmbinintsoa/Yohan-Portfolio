@@ -37,7 +37,7 @@
 }
 
 .description {
-  width: 70%;
+  overflow: hidden;
 }
 
 .description_text{
