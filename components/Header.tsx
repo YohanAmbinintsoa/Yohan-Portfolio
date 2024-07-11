@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Magnetic from "./Magnetic/Magnetic";
 import { useEffect } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 interface HeaderProps {
   loading: boolean;
@@ -31,18 +32,18 @@ const getVariant = (i: number) => ({
   },
 });
 
-const Header: React.FC<HeaderProps> = ({ loading }) => {
-  // useEffect(() => {
-  //   gsap.from('.link', {
-  //     scale: 0,
-  //     opacity: 0,
-  //     ease: "bounce.inOut",
-  //     duration: 1,
-  //     stagger: {
-  //       amount: 0.2
-  //     }
-  //   });
-  // }, []);
+const Header= () => {
+  useGSAP(() => {
+    gsap.from('.link', {
+      scale: 0,
+      opacity: 0,
+      ease: "bounce.inOut",
+      duration: 1,
+      stagger: {
+        amount: 0.2
+      }
+    });
+  });
 
   return (
     <nav className={`${styles.nav_container} header absolute z-10 top-8 h-10 w-[90%]`}>
@@ -73,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ loading }) => {
               href={icon.link}
               variants={getVariant(i)}
               initial="hidden"
-              animate={loading ? "hidden" : "visible"}
+              animate={"visible"}
             >
               <icon.icon />
             </motion.a>

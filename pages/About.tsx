@@ -13,7 +13,7 @@ interface BannerProps {
 const About= () => {
 
   return (
-    <section className={`${styles.about_section} w-full relative bg-transparent flex justify-center`}>
+    <section data-scroll-section className={`${styles.about_section} w-full relative bg-transparent flex justify-center`}>
       
     </section>
   );

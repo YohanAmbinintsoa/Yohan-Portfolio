@@ -14,7 +14,7 @@ interface BannerProps {
   loading: boolean;
 }
 
-const Banner: React.FC<BannerProps> = ({ loading }) => {
+const Banner =() => {
   const accroche = ["Transformez vos idées en solutions", "numériques efficaces."];
   const animation = {
     initial: { y: "100%", opacity: 0 },
@@ -26,22 +26,23 @@ const Banner: React.FC<BannerProps> = ({ loading }) => {
   };
 
   useGSAP(() => {
-        // gsap.from('.sary',{
-        //   scale:0,
-        //   duration:1,
-        //   ease:"back"
-        // });
-        gsap.from('.phrase',{
+        const tl=gsap.timeline();
+        tl.from('.sary',{
+          scale:0,
+          duration:0.8,
+          ease:"back"
+        });
+        tl.from('.phrase',{
           opacity: 0,
           y: 100,
-          duration: 1,
+          duration: 0.8,
           stagger: 0.075,
           ease: "back.inOut"
         });
   },[]);
 
   return (
-    <section className={`${styles.banner_section} w-full h-full relative bg-transparent flex justify-center`}>
+    <section data-scroll-section className={`${styles.banner_section} w-full h-full relative bg-transparent flex justify-center`}>
       <ParticlesContainer />
       <div className=" mt-[150px] flex flex-col items-center w-[50%]">
         <div className={`${styles.presentation}`}>
