@@ -10,30 +10,32 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@studio-freight/react-lenis": "^0.0.47",
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "framer-motion": "^11.2.12",
     "gsap": "^3.12.5",
     "install": "^0.13.0",
-    "locomotive-scroll": "^4.1.4",
+    "locomotive-scroll": "^5.0.0-beta.13",
     "next": "14.2.4",
     "npm": "^10.8.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-headroom": "^3.2.1",
     "react-icons": "^5.2.1",
-    "react-locomotive-scroll": "^0.2.2",
     "react-tsparticles": "^2.12.2",
     "sass": "^1.77.6",
     "tsparticles": "^3.5.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/locomotive-scroll": "^4.1.3",
+    "@types/node": "^20.14.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.5.3"
   }
 }

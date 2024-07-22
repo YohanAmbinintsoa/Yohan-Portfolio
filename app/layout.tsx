@@ -1,19 +1,21 @@
 import "./globals.css";
 import Banner from "../pages/Banner";
 import Header from "../components/Header";
-import { Open_Sans } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 
 
 import { AnimatePresence } from "framer-motion";
 import Preloader from "../components/Preloader/Preloader";
+import LocomotiveScroller from "@/components/LocomotiveScroller";
 
 
-const openSans = Open_Sans({
+const openSans = Poppins({
   subsets: ['latin'],
   display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 })
 
-export default function RootLayout({children, }:Readonly<{children: React.ReactNode}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode }>) {
 
   return (
     <html lang="en">
@@ -22,7 +24,9 @@ export default function RootLayout({children, }:Readonly<{children: React.ReactN
           {isLoading && <Preloader setLoading={setIsLoading} />}
         </AnimatePresence> */}
         <Header />
-        {children}
+        <LocomotiveScroller>
+          {children}
+        </LocomotiveScroller>
       </body>
     </html>
   );

@@ -15,7 +15,7 @@ interface BannerProps {
 }
 
 const Banner =() => {
-  const accroche = ["Transformez vos idées en solutions", "numériques efficaces."];
+  const accroche = ["Transformez vos idées", "en solutions numériques efficaces."];
   const animation = {
     initial: { y: "100%", opacity: 0 },
     enter: (i: number) => ({
@@ -35,26 +35,28 @@ const Banner =() => {
         tl.from('.phrase',{
           opacity: 0,
           y: 100,
+          rotateY: 90,
           duration: 0.8,
           stagger: 0.075,
           ease: "back.inOut"
         });
   },[]);
 
+
   return (
-    <section data-scroll-section className={`${styles.banner_section} w-full h-full relative bg-transparent flex justify-center`}>
-      <ParticlesContainer />
-      <div className=" mt-[150px] flex flex-col items-center w-[50%]">
+    <section data-scroll-section id="accueil" className={`${styles.banner_section} w-full relative bg-transparent flex items-center flex-col justify-center`}>
+      {/* <ParticlesContainer /> */}
+      <div className={ `${styles.container} flex flex-col items-center w-full`}>
         <div className={`${styles.presentation}`}>
           <Magnetic>
-            <Image className={`${styles.sary} sary`} alt="Pas trouve" src={sary} />
+            <Image data-scroll data-scroll-speed="0.08" className={`${styles.sary} sary`} alt="Pas trouve" src={sary} />
           </Magnetic>
-          <h4 className={`${styles.bonjour}`}>
+          <h4 data-scroll data-scroll-speed="0.08" className={`${styles.bonjour}`}>
             Bonjour! Je suis <span className={`${styles.nom}`}>Yohan Ambinintsoa.</span>
           </h4>
         </div>
-        <div className={`${styles.description} w-full flex flex-col items-center mt-7 justify-center`}>
-          <div className="accroche overflow-hidden">
+        <div className={`${styles.description} w-full flex flex-col items-center mt-3 justify-center`}>
+          <div data-scroll data-scroll-speed="0.09" className="accroche overflow-hidden">
             {accroche.map((phrase, index) => (
               <h1
                 key={index}
@@ -64,11 +66,11 @@ const Banner =() => {
               </h1>
             ))}
           </div>
-          <p className={`${styles.description_text} text-center mt-7 w-[50%]`}>
+          <p data-scroll data-scroll-speed="0.08" className={`${styles.description_text} text-center mt-5 w-[40%]`}>
             Spécialisé en <strong>développement web</strong> et création de <strong>solutions logicielles sur mesure.</strong>
           </p>
         </div>
-        <div className={`${styles.contact} mt-7 w-[50%] flex gap-20 flex-row items-center justify-center`}>
+        <div data-scroll data-scroll-speed="0.08" className={`${styles.contact} mt-7 w-[50%] flex gap-20 flex-row items-center justify-center`}>
           <Magnetic>
             <a href="mailto:yohanrabepro@gmail.com" className={`${styles.contact_button}`}>
               Contactez-moi<span>
@@ -77,6 +79,13 @@ const Banner =() => {
             </a>
           </Magnetic>
         </div>
+      </div>
+      <div data-scroll data-scroll-speed="0.08" className={`${styles.banner_footer} flex flex-row justify-between`}>
+        <div className={`${styles.contact_info}`}>
+            <p className="text-sm">yohanrabepro@gmail.com</p>
+            <p className="text-sm">(+261) 34 46 695 69</p>
+        </div>
+        <p className="text-center text-xs">© 2024 Yohan Ambinintsoa. Tous droits réservés.</p>
       </div>
     </section>
   );

@@ -92,7 +92,7 @@ export default function ParticlesContainer(){
     if(init){
         return (
         <Particles
-            className="absolute w-full h-full -z-10 pointer-events-none translate-z-0"
+            className="absolute w-full h-full pointer-events-none translate-z-0"
             id="tsparticles" 
             options={options}/>
         );

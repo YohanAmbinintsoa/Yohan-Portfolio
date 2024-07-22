@@ -1,8 +1,6 @@
 .banner_section {
   width: 100%;
   height: 100vh;
-  /* background: transparent; */
-  background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,1) 50%,rgba(70, 221, 216, 0.438) 100%);
 }
 
 
@@ -14,16 +12,16 @@
   gap: 20px;
 }
 
+
 .sary {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   aspect-ratio: 1;
   border-radius: 50%;
 }
 
 .bonjour {
-  font-size: 20px;
-  letter-spacing: 0.5px;
+  font-size: 17px;
 }
 
 .nom {
@@ -31,8 +29,7 @@
 }
 
 .accroche {
-  font-size: 50px;
-  font-weight: bold;
+  font-size: 67px;
   text-align: center;
 }
 
@@ -41,7 +38,7 @@
 }
 
 .description_text{
-    font-size: 19px;
+    font-size: 25px;
 }
 
 .contact_button{
@@ -85,4 +82,13 @@
 
 .contact_button:hover span{
   left: calc( 100% - 55px);
+}
+
+.banner_footer{
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  height: 100px;
+  align-items: center;
+  background: transparent;
 }

@@ -1,4 +1,21 @@
 .about_section{
     background: transparent;
-    height: 100vh;
+    /* height: 200vh; */
+}
+
+.sary{
+    filter: grayscale(100%);
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.about_div{
+    border: 1px var(--accent) solid;
+    border-radius: 15px;
+    width: 80%;
+    padding: 10px;
 }

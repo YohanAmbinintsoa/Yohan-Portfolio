@@ -1,11 +1,10 @@
-// components/Header.tsx
 "use client";
 import styles from "./header.module.css";
 import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { motion } from "framer-motion";
 import Magnetic from "./Magnetic/Magnetic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -32,7 +31,33 @@ const getVariant = (i: number) => ({
   },
 });
 
-const Header= () => {
+const Header = () => {
+  const [active, setActive] = useState("accueil");
+  const [show,setShow]=useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY) {
+      // Scrolling down
+      setShow(false);
+    } else {
+      // Scrolling up
+      setShow(true);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   useGSAP(() => {
     gsap.from('.link', {
       scale: 0,
@@ -45,9 +70,53 @@ const Header= () => {
     });
   });
 
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  useEffect(() => {
+    const links = document.querySelectorAll('.link');
+    links.forEach(link => {
+      if (link.getAttribute('href')?.substring(1) === active) {
+        link.classList.add(styles.active_link);
+      } else {
+        link.classList.remove(styles.active_link);
+      }
+    });
+  }, [active]);
+
+  const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.preventDefault();
+    const targetId = event.currentTarget.getAttribute('href')?.substring(1);
+    const targetElement = document.getElementById(targetId!);
+    targetElement?.scrollIntoView({ behavior: 'smooth' });
+    setActive(targetId!);
+  };
+
   return (
-    <nav className={`${styles.nav_container} header absolute z-10 top-8 h-10 w-[90%]`}>
-      <a href="#">
+    <nav className={`${styles.nav_container} header ${show ? 'top-0' : 'top-[-100px]'} fixed z-10 w-[100%]`}>
+      <a href="#accueil" onClick={handleLinkClick}>
         <p className="logo flex content-center text-xl gap-2 items-center">
           <span className={styles.logo_firstName}>Yohan</span>
           <span className={styles.logo_lastName}>Ambinintsoa.</span>
@@ -55,31 +124,40 @@ const Header= () => {
       </a>
       <div className={styles.nav_links}>
         <Magnetic>
-          <a className={`${styles.active_link} link`} href="#">Accueil</a>
+          <a className="link" onClick={handleLinkClick} href="#accueil" >Accueil</a>
         </Magnetic>
         <Magnetic>
-          <a className="link" href="#">A propos</a>
+          <a className="link" onClick={handleLinkClick} href="#about" >A propos</a>
         </Magnetic>
         <Magnetic>
-          <a className="link" href="#">Educations</a>
+          <a className="link" onClick={handleLinkClick} href="#education" >Educations</a>
         </Magnetic>
         <Magnetic>
-          <a className="link" href="#">Experiences</a>
+          <a className="link" onClick={handleLinkClick} href="#experience" >Experiences</a>
         </Magnetic>
       </div>
-      <div className={styles.icons}>
-        {socialIcons.map((icon, i) => (
-          <Magnetic key={i}>
-            <motion.a
-              href={icon.link}
-              variants={getVariant(i)}
-              initial="hidden"
-              animate={"visible"}
-            >
-              <icon.icon />
-            </motion.a>
-          </Magnetic>
-        ))}
+      <div className={styles.infos}>
+        <Magnetic>
+          <a href="">
+            <div className={`${styles.cv}`}>
+              <p className="text-sm my-1">Voir mon CV</p>
+            </div>
+          </a>
+        </Magnetic>
+        <div className={styles.icons}>
+          {socialIcons.map((icon, i) => (
+            <Magnetic key={i}>
+              <motion.a
+                href={icon.link}
+                variants={getVariant(i)}
+                initial="hidden"
+                animate="visible"
+              >
+                <icon.icon />
+              </motion.a>
+            </Magnetic>
+          ))}
+        </div>
       </div>
     </nav>
   );
