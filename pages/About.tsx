@@ -3,7 +3,10 @@
 import styles from "./styles/about.module.css";
 import { useRef } from "react";
 import gsap from "gsap";
+import sary from "@/public/sary.png";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 interface BannerProps {
   loading: boolean;
@@ -34,7 +37,7 @@ const About = () => {
         </div>
         <div className={` relative h-[840px] overflow-hidden`} >
             <div ref={imageContainer} className={`${styles.image} w-[100%] h-full overflow-hidden relative`}>
-              <img data-scroll data-scroll-speed="-0.35" className={`${styles.sary} absolute rounded-md h-full top-[-200px] w-[105%]`} src="../sary.png" alt="" />
+              <Image data-scroll data-scroll-speed="-0.35" className={`${styles.sary} absolute rounded-md h-full top-[-200px] w-[105%]`} src={sary} alt="" />
               <div className="absolute z-10 w-full h-full">
                 yohanrabepro@gmail.com
               </div>
@@ -49,7 +52,6 @@ const About = () => {
 function AnimatedText({ children }: { children: string }) {
   const text = useRef(null);
   useGSAP(async () => {
-    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(text.current, {
       scrollTrigger: {
