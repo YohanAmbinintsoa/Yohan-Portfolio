@@ -1,10 +1,8 @@
 "use client";
 
 import styles from "./styles/about.module.css";
-import Magnetic from "../components/Magnetic/Magnetic";
 import { useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from "@gsap/react";
 
 interface BannerProps {
@@ -50,7 +48,8 @@ const About = () => {
 
 function AnimatedText({ children }: { children: string }) {
   const text = useRef(null);
-  useGSAP(() => {
+  useGSAP(async () => {
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(text.current, {
       scrollTrigger: {
